@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: public
+  name: nginx-pub-nginx-lego-monitoring
+spec:
+  rules:
+  - host: nginx-pub-monitoring.kube.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-pub-nginx-lego-monitoring
+          servicePort: 18080

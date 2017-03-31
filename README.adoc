@@ -54,13 +54,13 @@ See link:ec2/README.adoc[EC2 cluster configuration steps]
 ... Quickest and simplest is to create an explicit host-record to make name-based routing work
 +
 ----
-echo "`minikube ip` nginx.kube.local jenkins.kube.local dashboard.kube.local" >> /etc/hosts
+echo "`minikube ip` nginx.kube.local nginx-int-monitoring.kube.local nginx-pub-monitoring.kube.local jenkins.kube.local dashboard.kube.local" >> /etc/hosts
 ----
 +
 or ...
 +
 ----
-sudo -- sh -c -e "echo '$(minikube ip) nginx.kube.local jenkins.kube.local dashboard.kube.local' >> /etc/hosts"
+sudo -- sh -c -e "echo '$(minikube ip) nginx.kube.local nginx-int-monitoring.kube.local nginx-pub-monitoring.kube.local jenkins.kube.local dashboard.kube.local' >> /etc/hosts"
 ----
 ... Alternatively, https://gist.github.com/eloypnd/5efc3b590e7c738630fdcf0c10b68072[install dnsmasq] and configure resolver for `.local` domain + wildcard DNS record pointing to `minikube ip` output
 
@@ -103,8 +103,8 @@ kubectl delete pod -n kube-system `kubectl get pods -n kube-system -l "k8s-app=k
 . K8S console is available at http://dashboard.kube.local
 . Jenkins is available on http://jenkins.kube.local
 .. There is a seed job `_create_project` for applications supporting standard package layout
-. NGINX Internal web console is available on http://nginx.kube.local:NNNNN (where NNNNN is the node port `monitoring` of `nginx-int`)
-. NGINX Public web console is available on http://nginx.kube.local:NNNNN (where NNNNN is the node port `monitoring` of `nginx-pub`)
+. NGINX Internal web console is available on http://nginx-int-monitoring.kube.local
+. NGINX Public web console is available on http://nginx-pub-monitoring.kube.local
 
 == Usage on EC2
 

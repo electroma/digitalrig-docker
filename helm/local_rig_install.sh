@@ -8,6 +8,10 @@ kubectl apply -f ./local/dashboard-ingress.yaml
 kubectl apply -f ./local/heapster-service.yaml \
               -f https://raw.githubusercontent.com/kubernetes/heapster/release-1.2/deploy/kube-config/standalone/heapster-controller.yaml
 
+# Install Nginx monitoring
+kubectl apply -f ./local/nginx-int-monitoring-ingress.yaml
+kubectl apply -f ./local/nginx-pub-monitoring-ingress.yaml
+
 # Install tiller
 helm init
 kubectl rollout status deployment/tiller-deploy -n kube-system
